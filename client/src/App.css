@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --slack-main-color: #350d36;
+  --slack-white: #fffeff;
+  --slack-color-dark: #1e071f;
+  --slack-color-search: #5e3f5f;
+  --slack-color-clear: #3f0e40;
+  --slack-blue: #146ea6;
+  --desktop-padding: 1rem;
+}
+
+body {
+  font-size: 15px;
+  font-family: "Lato", sans-serif;
+  background-color: var(--slack-white);
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+.app__body {
+  display: flex;
+  justify-content: space-between;
+}

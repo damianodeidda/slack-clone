@@ -1,0 +1,24 @@
+.message {
+  display: flex;
+  padding: 1rem;
+  align-items: flex-start;
+  width: 90%;
+  border-bottom: solid 1px var(--slack-color-dark);
+  margin: 1rem;
+  position: relative;
+  z-index: -1;
+}
+
+.message > .MuiSvgIcon-root {
+  height: 50px;
+  width: auto;
+  color: var(--slack-blue);
+}
+
+.textArea {
+  padding: 0 1rem;
+}
+
+.textArea > h4 {
+  padding-bottom: 0.5rem;
+}
