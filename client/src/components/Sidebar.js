@@ -22,7 +22,7 @@ useEffect(() => {
 
 const createChannel = () => {
 
-    axios.post("http://localhost:3001/new", {name}).then((response) =>{
+    axios.post("http://localhost:3001/newChannel", {name}).then((response) =>{
 
 setChannelsList([...channelsList, {name}])
     })

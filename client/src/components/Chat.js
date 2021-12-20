@@ -12,41 +12,41 @@ export default function Chat() {
     
     let {roomId} = useParams();
 
-    const [channelDetails, setChannelDetails] = useState(null);
     const [messagesList, setMessagesList] = useState([]);
+    const [channelDetail, setChannelDetail] = useState(null)
 
-     
-useEffect(() => {
-    if (roomId)
-   
-    axios.get("http://localhost:3001").then((response) => {
 
-        setChannelDetails(response.data[0].name)
-        setMessagesList(response.data[0].messages) 
-    })
+    useEffect(() => {
+        
 
-}, [])
+        axios.get(`http://localhost:3001/channel/${roomId}`).then((response) => {
+            
 
-console.log(messagesList)
+            setChannelDetail(response.data.name);
+            setMessagesList(response.data.messages);
+            
 
+        })}, [roomId])
+
+    
     return (
 
         <div className="chat">
         
         <div className="chat__messagesArea">
             <div className="chat__header">
-            <TagOutlined /> <h2> {roomId}</h2>
+            <TagOutlined /> <h2> {channelDetail}</h2>
             </div>
 
-        {messagesList.map((message) => {
+        {messagesList.map((messages) => {
 
             return (
     
         <Message 
         
-        key={message._id} 
-        messageUser={message.messageText} 
-        messageText={message.messageUser}
+        key={messages._id} 
+        messageUser={messages.messageUser} 
+        messageText={messages.messageText}
         
         />
       

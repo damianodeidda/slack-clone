@@ -3,11 +3,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 
 const app = express();
 
 
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/slackDB');
@@ -39,6 +40,23 @@ app.get("/", (req,res) => {
        res.json(result)
             }
     })
+})
+
+
+
+
+app.get("/channel/:channeName", async (req,res) => {
+   
+   
+    try {
+   const channel = await Channel.findOne({name: (req.params.channeName)})
+   
+   res.json(channel)
+    } catch(err) {
+        res.json({message: err})
+
+    }
+
 })
 
 app.post("/newChannel", async (req,res) => {
