@@ -41,7 +41,7 @@ app.get("/", (req,res) => {
     })
 })
 
-app.post("/new", async (req,res) => {
+app.post("/newChannel", async (req,res) => {
 
     const channelName = (req.body);
     const newChannel = new Channel (channelName);
@@ -49,7 +49,7 @@ app.post("/new", async (req,res) => {
 
     const messageName = (req.body);
     const newMessage = new Message(messageName);
-    await newMessage.save();
+    await newMessage.save(channelName);
 
     res.json(channelName);
 

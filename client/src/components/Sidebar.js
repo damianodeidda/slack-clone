@@ -48,7 +48,7 @@ setChannelsList([...channelsList, {name}])
                 {channelsList.map((channel) =>{
                     return (
               
-                <SidebarChannel title={channel.name} />
+                <SidebarChannel key={channel._id} title={channel.name} />
                     )
                 })
                 }

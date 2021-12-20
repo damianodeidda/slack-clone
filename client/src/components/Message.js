@@ -8,8 +8,8 @@ export default function Message(props) {
 
             <AccountBoxOutlined />
         <div className="textArea">
-            <h4>{props.messageUser} </h4>
-            <p>{props.messageText}</p>
+            <h4>{props.messageUser}{props.id} </h4>
+            <p>{props.messageText}{props.id}</p>
             </div>
 
             
