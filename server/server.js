@@ -24,7 +24,11 @@ const messagesSchema = new mongoose.Schema ({
 const Message = mongoose.model('Message', messagesSchema);
 
 const channelSchema = new mongoose.Schema ({
-    name: String,
+    name: {
+        type: String,
+        required: true
+    },
+
     messages: [messagesSchema]
 })
 
@@ -45,11 +49,11 @@ app.get("/", (req,res) => {
 
 
 
-app.get("/channel/:channeName", async (req,res) => {
+app.get("/channel/:channelName", async (req,res) => {
    
    
     try {
-   const channel = await Channel.findOne({name: (req.params.channeName)})
+   const channel = await Channel.findOne({name: (req.params.channelName)})
    
    res.json(channel)
     } catch(err) {
@@ -61,16 +65,51 @@ app.get("/channel/:channeName", async (req,res) => {
 
 app.post("/newChannel", async (req,res) => {
 
-    const channelName = (req.body);
+    let channelName = (req.body);
+
     const newChannel = new Channel (channelName);
     await newChannel.save();
 
+
     const messageName = (req.body);
-    const newMessage = new Message(messageName);
-    await newMessage.save(channelName);
+    const newMessage = new Message(messageName);  
 
-    res.json(channelName);
+   
 
+res.json(channelName);
+    
+});
+
+
+app.put("/newMessage/:name", async (req, res) => {
+
+const newMessage = Channel.findOne({name : req.params.name}, (err, result) => {
+    
+    if (!err) {
+        if (!result){
+        res.status(404).send('channel was not found');
+        }
+        else {
+        
+            result.messages.push(req.body);
+            result.markModified('messages');
+            result.save((saveErr, saveRes) => {
+                if (!saveErr) {
+                    res.status(200).send(saveRes);
+                } else {
+                    res.status(400).send(saveErr.message);
+                }
+            })
+        }
+
+    } else {
+
+        res.status(400).send(err.message);
+    }
+
+    
+    
+})
 
 })
 

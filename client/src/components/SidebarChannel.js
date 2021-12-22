@@ -1,7 +1,7 @@
-import { TrackChangesOutlined } from '@material-ui/icons'
 import React from 'react'
 import './SidebarChannel.css'
 import { Link } from 'react-router-dom';
+import { TagOutlined } from '@mui/icons-material';
 
 export default function SidebarChannel(props) {
 
@@ -11,7 +11,7 @@ export default function SidebarChannel(props) {
         <Link to={path}>
             <div className="sidebarChannel">
             
-           <TrackChangesOutlined />
+            <TagOutlined />
            <p>{props.title}{props.id}</p>
            
        </div>

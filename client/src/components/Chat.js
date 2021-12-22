@@ -13,7 +13,7 @@ export default function Chat() {
     let {roomId} = useParams();
 
     const [messagesList, setMessagesList] = useState([]);
-    const [channelDetail, setChannelDetail] = useState(null)
+    const [channelDetail, setChannelDetail] = useState("")
 
 
     useEffect(() => {

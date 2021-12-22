@@ -1,7 +1,6 @@
 .sidebar {
   background-color: var(--slack-color-clear);
   color: var(--slack-white);
-  width: 35vh;
   min-height: 93vh;
   flex: 0.2;
   position: fixed;

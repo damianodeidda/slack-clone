@@ -7,7 +7,7 @@
   background-color: var(--slack-white);
 }
 
-textarea {
+.form__Input {
   border: none;
   display: flex;
   justify-content: center;
@@ -16,7 +16,7 @@ textarea {
   margin: 0.5rem 0.5rem;
 }
 
-textarea::placeholder {
+.form__Input::placeholder {
   font-family: "lato";
 }
 
