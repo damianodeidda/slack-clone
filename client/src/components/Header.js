@@ -20,6 +20,7 @@ export default function Header() {
         <div className="header__right">
            <InfoOutlined />
            <AccountCircleOutlined />
+           <p>ciao, user1</p>
         </div>
        
             

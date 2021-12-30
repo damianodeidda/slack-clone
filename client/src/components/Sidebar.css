@@ -1,29 +1,74 @@
 .sidebar {
   background-color: var(--slack-color-clear);
   color: var(--slack-white);
-  min-height: 93vh;
-  flex: 0.2;
+  min-height: 95vh;
+  width: 18rem;
   position: fixed;
-  top: 3.5rem;
+  top: 2.5rem;
+}
+
+.openSidebar {
+  display: none;
+}
+
+@media screen and (max-width: 860px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+    z-index: 99;
+    width: 14rem;
+  }
+  .sidebarChannel__mobileOpen {
+    transform: translateX(0);
+    z-index: 99;
+    transition: all 0.3s ease;
+  }
+
+  .openSidebar {
+    display: flex;
+    position: relative;
+    top: 0.5rem;
+    left: 14rem;
+    padding: 0.5rem;
+    color: var(--slack-white);
+    background-color: var(--slack-color-clear);
+    z-index: 99;
+    cursor: pointer;
+    justify-content: flex-end;
+    width: 40px;
+  }
+
+  .openSidebar .MuiSvgIcon-root:hover {
+    opacity: 0.8;
+  }
+
+  .openSidebar .MuiSvgIcon-root {
+    color: var(--slack-white);
+    display: flex;
+  }
+
+  .sidebar__header {
+    top: 1rem;
+  }
 }
 
 .sidebar__header {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  border-bottom: solid 2px var(--slack-color-search);
-}
-
-.sidebar__header > h2 {
-  padding-right: 1rem;
+  padding: 1rem 1.5rem;
+  position: relative;
+  top: 0rem;
+  margin-bottom: 0.5rem;
+  border-bottom: solid 1px var(--slack-color-search);
+  z-index: 99;
 }
 
 .sidebar__header > .MuiSvgIcon-root {
   background-color: var(--slack-white);
   color: var(--slack-main-color);
-  height: 35px;
-  padding: 5px;
+  height: 30px;
+  margin-left: 1rem;
+  padding: 0.3rem;
   width: auto;
   border-radius: 100%;
   cursor: pointer;
@@ -32,8 +77,9 @@
 .sidebarChannels__header {
   display: flex;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
   align-items: center;
+  margin-bottom: 0.5rem;
 }
 
 .sidebarChannels__header:hover {
@@ -45,7 +91,6 @@
 }
 
 .sidebarChannels__addChannel {
-  display: flex;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   align-items: center;
@@ -64,4 +109,48 @@
 
 .sidebarChannels__addChannel > button > .MuiSvgIcon-root {
   color: var(--slack-color-dark);
+}
+
+.popup__newChannel_closed {
+  display: none;
+}
+
+.popup__newChannel_open {
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+  width: 100%;
+  background-color: var(--slack-color-clear);
+  padding: 1rem;
+  z-index: 99;
+  transition: all 1s;
+}
+
+.popup__newChannel_open {
+  align-items: center;
+  color: var(--slack-white);
+}
+
+.popup__newChannel_open input {
+  min-height: 2rem;
+  width: 100%;
+  padding-left: 0.5rem;
+}
+
+.add_channel {
+  margin-top: 2rem;
+}
+
+.popup__newChannel_open .MuiSvgIcon-root {
+  cursor: pointer;
+  margin: 0 1rem;
+  background-color: var(--slack-color-search);
+}
+
+.popup__newChannel_open .MuiSvgIcon-root:hover {
+  opacity: 0.5;
+}
+
+.channelList_closed {
+  display: none;
 }

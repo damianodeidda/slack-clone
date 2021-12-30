@@ -68,6 +68,9 @@ app.post("/newChannel", async (req,res) => {
     let channelName = (req.body);
 
     const newChannel = new Channel (channelName);
+
+
+
     await newChannel.save();
 
 
@@ -112,6 +115,25 @@ const newMessage = Channel.findOne({name : req.params.name}, (err, result) => {
 })
 
 })
+
+app.delete("/deleteChannel/:name", (req, res) => {
+
+    const deleteChannelid = req.params.name;
+
+const deletedChannel = Channel.findOneAndRemove({name: deleteChannelid}, (err,result) => {
+
+    if (!err){
+        console.log("channel deleted")
+        res.json(result)
+    } else {
+
+        console.log("error")
+    }
+})
+
+
+})
+
 
 
 

@@ -6,6 +6,8 @@ import { useParams } from 'react-router'
 import { TagOutlined } from '@mui/icons-material'
 import { useState } from 'react'
 import axios from 'axios'
+import { DeleteOutline, HighlightOffOutlined } from '@material-ui/icons'
+import { Link } from 'react-router-dom'
 
 
 export default function Chat() {
@@ -13,9 +15,10 @@ export default function Chat() {
     let {roomId} = useParams();
 
     const [messagesList, setMessagesList] = useState([]);
-    const [channelDetail, setChannelDetail] = useState("")
+    const [channelDetail, setChannelDetail] = useState("");
+    const [deleteIsclosed, setDeleteIsClosed] = useState(true);
 
-
+    
     useEffect(() => {
         
 
@@ -26,8 +29,15 @@ export default function Chat() {
             setMessagesList(response.data.messages);
             
 
-        })}, [roomId])
+        })}, [messagesList, roomId])
 
+
+
+    const deleteChannel = () => {
+
+        axios.delete(`http://localhost:3001/deleteChannel/${roomId}`)
+
+    }
     
     return (
 
@@ -35,7 +45,29 @@ export default function Chat() {
         
         <div className="chat__messagesArea">
             <div className="chat__header">
+                <div className='chat__headerName'>
             <TagOutlined /> <h2> {channelDetail}</h2>
+            </div>
+
+            <div className='chat__headerDelete' onClick={() => setDeleteIsClosed(!deleteIsclosed)}>
+                <DeleteOutline />
+                <h4> Elimina Canale </h4>
+                </div>
+            
+            
+            <div className={deleteIsclosed ? 'chat__headerDeletePopup_closed' : 'chat__headerDeletePopup'}>
+            <HighlightOffOutlined />
+                <h2> Eliminare il canale {channelDetail}? </h2>
+                <div className='chat__headerDeletePopup_buttons'>  
+                <Link to="/">
+                <button className="yes_deleteChannel" onClick={()=> {deleteChannel(); setDeleteIsClosed(!deleteIsclosed);}}>Si</button>
+                </Link>
+                <button className="no_deleteChannel" onClick={() => setDeleteIsClosed(!deleteIsclosed)}>No</button>
+                </div>
+            </div>
+
+
+            
             </div>
 
         {messagesList.map((messages) => {
@@ -45,13 +77,16 @@ export default function Chat() {
         <Message 
         
         key={messages._id} 
-        messageUser={messages.messageUser} 
+        messageUser="user1"
         messageText={messages.messageText}
         
         />
       
             )
          } )}
+
+<Message messageUser="user 123" messageText="hola questo è un test di un messaggio statico e non dinamico dal database" />
+
         </div>
         <ChatInput />
         </div>

@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Sidebar from './components/Sidebar';
 import Chat from './components/Chat';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
     <Routes>
     
       
-      <Route path="/" element={<Chat />} />
+      <Route path="/" element={<Home />} />
       <Route path="/rooms/:roomId" element={<Chat />} />
   
     </Routes>

@@ -1,31 +1,47 @@
 import { SendOutlined } from '@mui/icons-material'
 import React from 'react'
 import './ChatInput.css'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router'
+import { useParams } from 'react-router';
 
-export default function ChatInput({channelDetail}) {
+export default function ChatInput() {
+
     
-    const [input, setInput] = useState("")
 
+    let {roomId} = useParams();
+
+    const [input, setInput] = useState("");
+
+    const chatInput = useRef(null);
+
+    const clearChatInput = () => {
+
+        chatInput.current.value = "";
+    }
+
+   
     const sendMessage = (event) => {
-
+    
         event.preventDefault();
-
-        axios.put(`http://localhost:3001/newMessage/instagram`, {messageText: input}).then((response) => {
         
-        })
-        setInput("")
+        if (roomId) {
+        axios.put(`http://localhost:3001/newMessage/${roomId}`, {
+            
+        messageText: input
+    });
+     setInput("");
+}
+    
     }
 
     return (
         <div className="chatInput">
             
       
-            <input className="form__Input" value={input} placeholder={`Invia messaggio a ${channelDetail}`} onChange={(event) => setInput(event.target.value)} rows="2"></input>
+            <input className="form__Input" placeholder={`Invia messaggio alla chat ${roomId}`} onChange={(event) => setInput(event.target.value)} ref={chatInput} rows="2"></input>
 
-                <button onClick={sendMessage}> <SendOutlined /></button>
+                <button onClick={(event) => {clearChatInput(); sendMessage(event);}}> <SendOutlined /></button>
                 
         </div>
     )

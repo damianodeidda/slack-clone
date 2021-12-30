@@ -7,25 +7,26 @@
 :root {
   --slack-main-color: #350d36;
   --slack-white: #fffeff;
-  --slack-color-dark: #1e071f;
+  --slack-color-dark: #2d0a2e;
   --slack-color-search: #5e3f5f;
   --slack-color-clear: #3f0e40;
   --slack-blue: #146ea6;
-  --desktop-padding: 1rem;
+  --desktop-padding: 0.7rem 1rem;
 }
 
 body {
   font-size: 15px;
   font-family: "Lato", sans-serif;
   background-color: var(--slack-white);
+  overflow-x: hidden;
 }
 
 h2 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .app__body {

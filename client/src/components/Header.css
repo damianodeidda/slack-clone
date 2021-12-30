@@ -7,6 +7,7 @@
   align-items: center;
   position: sticky;
   top: 0;
+  z-index: 99;
 }
 
 .header__left {
@@ -22,7 +23,7 @@
 
 .header__search {
   display: flex;
-  flex: 0.4;
+  flex: 0.3;
   align-items: left;
   justify-content: center;
   background-color: var(--slack-color-search);
@@ -64,10 +65,12 @@
 .header__right {
   display: flex;
   flex: 0.3;
+  padding-left: 0.5rem;
   justify-content: right;
+  align-items: center;
 }
 
 .header__right > .MuiSvgIcon-root {
-  margin-right: 1rem;
+  margin: 0 0.5rem;
   cursor: pointer;
 }
