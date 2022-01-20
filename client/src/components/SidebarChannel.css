@@ -72,8 +72,8 @@
   position: absolute;
   align-items: center;
   justify-content: space-between;
-  left: 15rem;
-  width: 70%;
+  left: 10rem;
+  width: 85%;
   padding: 0.5rem 1rem;
   z-index: 1000;
   cursor: pointer;

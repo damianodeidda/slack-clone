@@ -47,7 +47,7 @@ export default function SidebarChannel(props) {
 
     <div className={isPopupClosed ? "sidebarChannel__popUpClosed" : "sidebarChannel__popUpOpen"} onClick={() => {deleteChannel(); setisPopupClosed(!isPopupClosed) }}>
     <DeleteOutline />
-    <p>Elimina il canale {props.title}</p>
+    <p>Elimina il canale {props.title}?</p>
     </div>
 
 

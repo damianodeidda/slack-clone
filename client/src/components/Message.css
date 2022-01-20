@@ -124,4 +124,8 @@
   .message__left > .MuiSvgIcon-root {
     width: 35px;
   }
+
+  .message {
+    margin-right: 0;
+  }
 }

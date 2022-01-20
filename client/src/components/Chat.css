@@ -7,6 +7,7 @@
   padding: 2rem 1rem;
   width: 100%;
   left: 18rem;
+  overflow-x: hidden;
 }
 
 .chat__header {
@@ -174,7 +175,7 @@
 
 @media screen and (max-width: 450px) {
   .chat {
-    width: 100%;
+    width: 110%;
     left: 0rem;
   }
 
@@ -183,13 +184,13 @@
   }
 
   .chat__header {
-    width: 85%;
+    width: 95%;
     padding-left: 2rem;
     padding-right: 2rem;
   }
 
   .chat__messagesArea {
-    width: 110%;
+    width: 120%;
     padding-left: 0.5rem;
   }
 }

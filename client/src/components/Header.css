@@ -74,3 +74,32 @@
   margin: 0 0.5rem;
   cursor: pointer;
 }
+
+@media screen and (max-width: 890px) {
+  .header__search {
+    flex: 0.1;
+  }
+
+  .header__right {
+    flex: 0.5;
+  }
+
+  .header {
+    padding: var(--mobile-padding);
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .header {
+    justify-content: space-between;
+  }
+
+  .header__left {
+    flex: 0.5;
+    justify-content: flex-start;
+  }
+
+  .header__search {
+    display: none;
+  }
+}

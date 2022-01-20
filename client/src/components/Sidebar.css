@@ -15,11 +15,12 @@
 @media screen and (max-width: 865px) {
   .sidebar {
     transform: translateX(-100%);
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     z-index: 99;
     width: 14rem;
     resize: horizontal;
   }
+
   .sidebarChannel__mobileOpen {
     transform: translateX(0);
     z-index: 99;
@@ -51,6 +52,10 @@
 
   .sidebar__header {
     top: 1rem;
+  }
+
+  .sidebar:hover {
+    transform: translateX(0%);
   }
 }
 
