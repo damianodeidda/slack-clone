@@ -7,7 +7,7 @@
   background-color: var(--slack-white);
   display: flex;
   left: 20rem;
-  z-index: 99;
+  z-index: 2;
   align-items: center;
 }
 

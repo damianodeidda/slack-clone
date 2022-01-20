@@ -25,7 +25,7 @@ const [isDeleteOpen, setIsDeleteOpen] = useState(true);
             
 
             <div className={isDeleteOpen ? 'message__deletePopUp_hidden' : 'message__deletePopUp'}>
-                <h3>Eliminare il messaggio?</h3>
+                <h3>Eliminare il messaggio? (Questa funzione non è attiva al momento)</h3>
                 <button className="yes_delete">Si</button>
                 <button className="no_delete" onClick={() => setIsDeleteOpen(!isDeleteOpen)}>No</button>
             </div>

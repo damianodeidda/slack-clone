@@ -27,9 +27,18 @@ h2 {
 
 h3 {
   font-size: 1rem;
+  font-weight: 400;
 }
 
 .app__body {
   display: flex;
   justify-content: space-between;
+  max-height: 100vh;
+}
+
+@media screen and (max-width: 850px) {
+  .app__body {
+    display: flex;
+    justify-content: flex-start;
+  }
 }

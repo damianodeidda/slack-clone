@@ -26,7 +26,7 @@ export default function ChatInput() {
         event.preventDefault();
         
         if (roomId) {
-        axios.put(`http://localhost:3001/newMessage/${roomId}`, {
+        axios.put(`https://slack-clone-backend-1.herokuapp.com/newMessage/${roomId}`, {
             
         messageText: input
     });

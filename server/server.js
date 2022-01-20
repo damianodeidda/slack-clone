@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+require('dotenv').config()
 
 const app = express();
 
@@ -11,18 +12,23 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/slackDB');
 
+//Creazione del database
+mongoose.connect(process.env.DB_CONNECTION);
 
+//Schema di un messaggio singolo
 const messagesSchema = new mongoose.Schema ({
     messageUser: String,
     messageText: String,
 
 })
 
-
+//Modello di un messaggio singolo
 const Message = mongoose.model('Message', messagesSchema);
 
+
+
+//Schema di un canale singolo (con all'interno l'array dei messaggi singoli)
 const channelSchema = new mongoose.Schema ({
     name: {
         type: String,
@@ -32,7 +38,12 @@ const channelSchema = new mongoose.Schema ({
     messages: [messagesSchema]
 })
 
+// Modello del canale singolo
 const Channel = mongoose.model('Channel', channelSchema);
+
+
+
+//Get request con Json File per vedere tutti gli elementi del database
 
 app.get("/", (req,res) => {
 
@@ -48,20 +59,21 @@ app.get("/", (req,res) => {
 
 
 
+//Get request per vedere il singolo canale (con i relativi messaggi)
 
 app.get("/channel/:channelName", async (req,res) => {
-   
-   
     try {
    const channel = await Channel.findOne({name: (req.params.channelName)})
    
    res.json(channel)
     } catch(err) {
         res.json({message: err})
-
     }
-
 })
+
+
+
+// Post request per la creazione di un nuovo canale
 
 app.post("/newChannel", async (req,res) => {
 
@@ -69,23 +81,24 @@ app.post("/newChannel", async (req,res) => {
 
     const newChannel = new Channel (channelName);
 
-
-
     await newChannel.save();
 
-
+//Al momento della creazione del canale viene inserito un secondo modello del database (Messaggi)
     const messageName = (req.body);
     const newMessage = new Message(messageName);  
 
-   
-
-res.json(channelName);
+    res.json(channelName);
     
 });
 
 
+
+// Put request per un singolo messaggio all'interno di un canale
+
 app.put("/newMessage/:name", async (req, res) => {
 
+
+    // Viene ricercato prima il canale, e se esistente, viene inserito il messaggio
 const newMessage = Channel.findOne({name : req.params.name}, (err, result) => {
     
     if (!err) {
@@ -116,9 +129,14 @@ const newMessage = Channel.findOne({name : req.params.name}, (err, result) => {
 
 })
 
+
+
+// Eliminazione di un canale (e di tutti i messaggi all'interno)
+
 app.delete("/deleteChannel/:name", (req, res) => {
 
-    const deleteChannelid = req.params.name;
+
+const deleteChannelid = req.params.name;
 
 const deletedChannel = Channel.findOneAndRemove({name: deleteChannelid}, (err,result) => {
 
@@ -137,7 +155,7 @@ const deletedChannel = Channel.findOneAndRemove({name: deleteChannelid}, (err,re
 
 
 
-app.listen("3001", (req, res) => {
+app.listen(process.env.PORT || "3001", (req, res) => {
 
     console.log("Server running on port 3001");
 

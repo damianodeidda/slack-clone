@@ -9,6 +9,29 @@
   width: 75%;
   transition: all 500ms;
   z-index: 1;
+  animation: appear 120ms ease;
+}
+
+@media screen and (max-width: 865px) {
+  .message {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
 .message:hover {
@@ -95,4 +118,10 @@
   background-color: rgb(241, 241, 241);
   color: var(--slack-color-dark);
   opacity: 0.7;
+}
+
+@media screen and (max-width: 865px) {
+  .message__left > .MuiSvgIcon-root {
+    width: 35px;
+  }
 }

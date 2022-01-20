@@ -10,7 +10,7 @@ import { DeleteOutline, HighlightOffOutlined } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 
 
-export default function Chat() {
+export default function Chat(props) {
     
     let {roomId} = useParams();
 
@@ -22,22 +22,24 @@ export default function Chat() {
     useEffect(() => {
         
 
-        axios.get(`http://localhost:3001/channel/${roomId}`).then((response) => {
+        axios.get(`https://slack-clone-backend-1.herokuapp.com/channel/${roomId}`).then((response) => {
             
 
             setChannelDetail(response.data.name);
             setMessagesList(response.data.messages);
             
 
-        })}, [messagesList, roomId])
+        })}, [messagesList])
 
 
 
     const deleteChannel = () => {
 
-        axios.delete(`http://localhost:3001/deleteChannel/${roomId}`)
+        axios.delete(`https://slack-clone-backend-1.herokuapp.com/deleteChannel/${roomId}`);
+        window.location.reload()
 
     }
+
     
     return (
 
@@ -85,7 +87,6 @@ export default function Chat() {
             )
          } )}
 
-<Message messageUser="user 123" messageText="hola questo è un test di un messaggio statico e non dinamico dal database" />
 
         </div>
         <ChatInput />
