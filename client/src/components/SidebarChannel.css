@@ -72,8 +72,8 @@
   position: absolute;
   align-items: center;
   justify-content: space-between;
-  left: 15rem;
-  width: 70%;
+  left: 13rem;
+  width: 14rem;
   padding: 0.5rem 1rem;
   z-index: 1000;
   cursor: pointer;
@@ -82,11 +82,9 @@
   animation: appear 150ms ease;
 }
 
-@media screen and (max-width: 865px) {
-  .sidebarChannel__popUpOpen {
-    left: 10rem;
-    width: 90%;
-  }
+a {
+  display: flex;
+  align-items: center;
 }
 
 .sidebarChannel__popUpOpen:hover {

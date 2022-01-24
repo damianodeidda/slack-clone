@@ -18,7 +18,6 @@ function App() {
     <Sidebar />
     <Routes>
     
-      
       <Route path="/" element={<Home />} />
       <Route path="/rooms/:roomId" element={<Chat />} />
   

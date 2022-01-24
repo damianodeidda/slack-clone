@@ -18,16 +18,23 @@ const clearChannelInput = () => {
 }
 
 
-const [openSidebar, setOpenSidebar] = useState(true)
 const [isClosed, setIsClosed] = useState(true);
 const [channelListClosed, setchannelListClosed] = useState(true)
 
 
-const deleteSidebarChannel = () => {
+const deleteSidebarChannel = (props) => {
 
     window.location.reload();
 
     console.log("ttasto triggerato")
+
+
+    setChannelsList(channelsList => {
+
+        return channelsList.filter((id, index) => {
+            return index !== props.id
+        })
+       })
 
 }
 
@@ -59,9 +66,9 @@ setChannelsList([...channelsList, {name}])
 return (
         <div className='sidebar_main'>
 
-        <div className={openSidebar ? "sidebar" : "sidebar sidebarChannel__mobileOpen" } >
+        <div className="sidebar" >
 
-        <div className="openSidebar" onClick={() => setOpenSidebar(!openSidebar)}>
+        <div className="openSidebar">
 
             <MenuOpenOutlined />
         </div>
@@ -84,7 +91,7 @@ return (
                 
                 <div className={channelListClosed ? "channelList_open" : "channelList_closed"}>
 
-                {channelsList.map((channel) =>{
+                {channelsList.map((channel, id) =>{
 
                     return (
               
